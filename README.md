@@ -1,1 +1,1 @@
-[DEMO](https://angularify.firebaseapp.com/).
+[DEMO](https://angularify.firebaseapp.com/)
