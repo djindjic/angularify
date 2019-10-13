@@ -1,0 +1,11 @@
+@mixin from-size-m {
+  @include from-size(800px) {
+    @content;
+  }
+}
+
+@mixin from-size($size) {
+  @media screen and (min-width: $size) {
+    @content;
+  }
+}

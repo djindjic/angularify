@@ -1,0 +1,48 @@
+<div
+  class="favorites-box side-box"
+  [class.visible]="showFavorites">
+  <i class="fas fa-times close-btn" (click)="showFavorites = false"></i>
+  <h2>Favorites</h2>
+  <app-movie-list [movies]="(favoritesStore.favorites$ | async).movies"></app-movie-list>
+</div>
+
+<div class="search-box">
+  <a class="favorite" (click)="showFavorites = !showFavorites">Favorites({{ (favoritesStore.favorites$ | async).movies.length }})</a>
+  <a class="watch-later" (click)="showWatchLater = !showWatchLater">Watch Later({{ (watchLaterStore.watchLater$ | async).movies.length }})</a>
+
+  <input
+    [formControl]="searchQueryInput"
+    placeholder="Find Movies"
+    class="search-input"
+    type="text" autofocus>
+  <ng-container *ngIf="!(searchStore.resultState$ | async).loading">
+    <div class="item" *ngFor="let movie of (searchStore.resultState$ | async).movies">
+      <i
+        (click)="onToggleFavorite(movie)"
+        class="pointer fa-star favorite-icon"
+        [class.far]="!(favoritesStore.isFavorite(movie) | async)"
+        [class.fas]="favoritesStore.isFavorite(movie) | async"></i>
+      <i
+        (click)="onToggleWatchLater(movie)"
+        class="pointer fas watch-later-icon"
+        [class.fa-plus]="!(watchLaterStore.isInWatchLater(movie) | async)"
+        [class.fa-minus]="watchLaterStore.isInWatchLater(movie) | async"></i>
+      {{ movie.title }}
+    </div>
+  </ng-container>
+
+  <div *ngIf="(searchStore.resultState$ | async).loading">loading...</div>
+
+  <app-paging
+    (pageChanged)="onPageChanged($event)"
+    [totalPages]="(searchStore.resultState$ | async).totalPages"
+  ></app-paging>
+</div>
+
+<div
+  class="watch-later-box side-box"
+  [class.visible]="showWatchLater">
+  <i class="fas fa-times close-btn" (click)="showWatchLater = false"></i>
+  <h2>Watch Later</h2>
+  <app-movie-list [movies]="(watchLaterStore.watchLater$ | async).movies"></app-movie-list>
+</div>

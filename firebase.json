@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "angularify",
+      "public": "dist/angularify",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}

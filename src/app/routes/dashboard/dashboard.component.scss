@@ -1,0 +1,112 @@
+@import '../../../mixins';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @include from-size-m {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.side-box {
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.search-input {
+  width: 100%;
+  margin-top: 10px;
+  height: 33px;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  outline: none;
+  box-sizing: border-box;
+  font-size: larger;
+  padding: 0 20px;
+}
+
+.search-box {
+  box-sizing: border-box;
+  padding: 20px;
+  width: 100vw;
+  @include from-size-m {
+    width: 50vw;
+  }
+}
+
+.favorites-box {
+  position: absolute;
+  width: 50vw;
+  left: -50vw;
+  transition: left 200ms ease;
+  background-color: orange;
+
+  @include from-size-m {
+    position: static;
+    width: 25%;
+  }
+
+  &.visible {
+    left: 0;
+  }
+}
+
+.watch-later-box {
+  position: absolute;
+  width: 50vw;
+  right: -50vw;
+  transition: right 200ms ease;
+  background-color: lightblue;
+
+  @include from-size-m {
+    position: static;
+    width: 25%;
+  }
+
+  &.visible {
+    right: 0;
+  }
+}
+
+.close-btn {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+
+  @include from-size-m {
+    visibility: hidden;
+  }
+}
+
+.favorite {
+  color: orange;
+  cursor: pointer;
+  @include from-size-m {
+    cursor: auto;
+  }
+}
+
+.watch-later {
+  color: lightblue;
+  cursor: pointer;
+  float: right;
+  @include from-size-m {
+    cursor: auto;
+  }
+}
+
+.watch-later-icon {
+  color: lightblue;
+}
+
+.favorite-icon {
+  color: orange;
+}
+
+.pointer {
+  cursor: pointer;
+}

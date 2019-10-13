@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "angularify": {
+      "hosting": {
+        "angularify": [
+          "angularify"
+        ]
+      }
+    }
+  }
+}
